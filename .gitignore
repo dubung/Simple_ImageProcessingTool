@@ -1,0 +1,57 @@
+# =========================
+# Visual Studio / MFC 기본
+# =========================
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# 빌드 산출물 폴더
+Debug/
+Release/
+x64/
+x86/
+ARM/
+ARM64/
+ipch/
+[Bb]in/
+[Oo]bj/
+out/
+build/
+
+# MSVC 산출물/중간파일
+*.obj
+*.pch
+*.pdb
+*.idb
+*.ilk
+*.ipdb
+*.iobj
+*.tlog
+*.log
+*.lastbuildstate
+*.res
+
+# VS 데이터베이스/캐시
+*.VC.db
+*.VC.VC.opendb
+*.ncb
+*.sdf
+*.opensdf
+
+# MFC 리소스 편집 캐시
+*.aps
+
+# =========================
+# 너 프로젝트에 딱 있는 것들
+# =========================
+# 사용자별 설정 파일(현재 ImageTool.vcxproj.user 있음) - 무조건 제외
+ImageTool.vcxproj.user
+
+# (권장) OpenCV DLL은 보통 올리지 않음 (아래는 제외 처리)
+opencv_world*.dll
+
+# (선택) 배포용 exe/dll도 보통 제외
+*.exe
+*.dll
