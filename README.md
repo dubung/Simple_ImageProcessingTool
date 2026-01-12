@@ -1,6 +1,17 @@
 ## 결과 화면 (Screenshots)
 
 <details open>
+<summary><b>히스토그램 / 평활화</b></summary>
+
+<img src="docs/images/histogram_equalization.png" width="900"/>
+
+<ul>
+  <li>그레이/컬러 영상의 히스토그램(RGB 채널별) 및 평활화 결과 비교</li>
+</ul>
+
+</details>
+
+<details>
 <summary><b>기하 변환</b></summary>
 
 <table>
@@ -152,17 +163,6 @@
       <li>오른쪽: <b>원본 → 열기(Opening) → 닫기(Closing)</b></li>
     </ul>
   </li>
-</ul>
-
-</details>
-
-<details>
-<summary><b>히스토그램 / 평활화</b></summary>
-
-<img src="docs/images/histogram_equalization.png" width="900"/>
-
-<ul>
-  <li>그레이/컬러 영상의 히스토그램(RGB 채널별) 및 평활화 결과 비교</li>
 </ul>
 
 </details>
