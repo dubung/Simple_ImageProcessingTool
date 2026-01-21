@@ -1,0 +1,63 @@
+# =========================
+# Visual Studio / MFC (C++)
+# =========================
+
+# VS workspace / cache
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+ipch/
+*.ipch
+Browse.VC.db
+
+# IntelliSense / temp
+*.aps
+*.ncb
+*.opendb
+*.tlog
+*.lastbuildstate
+*.log
+
+# Build output (typical for MFC)
+Debug/
+Release/
+x64/
+Win32/
+*/Debug/
+*/Release/
+*/x64/
+*/Win32/
+*.obj
+*.pch
+*.pdb
+*.idb
+*.ilk
+*.ipdb
+*.iobj
+*.exp
+*.lib
+
+# MFC generated
+*.res
+*.bsc
+*.sbr
+
+# CMake (if used)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.cmake
+
+# NuGet (if you use it)
+packages/
+
+# VS Code (optional)
+.vscode/
+
+# OS junk
+.DS_Store
+Thumbs.db
