@@ -26,8 +26,8 @@ public:
 	afx_msg void OnDestroy();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 
-	cv::VideoCapture* capture;
-	cv::Mat mat_frame;
+	//cv::VideoCapture* capture;
+	//cv::Mat mat_frame;
 	CImage cimage_mfc;
 	LdhDib dib;
 	
@@ -38,12 +38,12 @@ public:
 
 	BOOL m_bThreadFlag = FALSE;
 	void FillBitmapInfo(BITMAPINFO* bmi, int width, int height, int bpp, int origin);
-	void DIsplayImage(CDC* pDC, CRect rect, cv::Mat& srcimg);
+	//void DIsplayImage(CDC* pDC, CRect rect, cv::Mat& srcimg);
 	afx_msg void OnBnClickedCamStart();
 	afx_msg void OnBnClickedCamStop();
 	afx_msg void OnBnClickedGrabButton();
 
-	void Mat2DIB(cv::Mat& MatSrc, LdhDib& dibSrc);
+	//void Mat2DIB(cv::Mat& MatSrc, LdhDib& dibSrc);
 
 	afx_msg void OnBnClickedOk();
 	int m_nCamColorType;

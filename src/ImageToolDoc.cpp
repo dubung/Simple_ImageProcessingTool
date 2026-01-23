@@ -1660,11 +1660,13 @@ void CImageToolDoc::OnOpencvcam()
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 
 	COpenCvCamDlg dlg;
+	/*
 	dlg.capture = new cv::VideoCapture(0);
 	if (!dlg.capture->isOpened())
 	{
 		AfxMessageBox(_T("웹캠을 열수 없습니다."));
 	}
+	*/
 	dlg.DoModal();
 
 }

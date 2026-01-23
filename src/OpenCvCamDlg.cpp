@@ -22,7 +22,7 @@ COpenCvCamDlg::COpenCvCamDlg(CWnd* pParent /*=nullptr*/)
 
 COpenCvCamDlg::~COpenCvCamDlg()
 {
-	mat_frame = NULL;
+	//mat_frame = NULL;
 }
 
 void COpenCvCamDlg::DoDataExchange(CDataExchange* pDX)
@@ -60,40 +60,41 @@ void COpenCvCamDlg::OnDestroy()
 void COpenCvCamDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
-	capture->read(mat_frame);
+	//capture->read(mat_frame);
 	
 
 	// 화면에 보여주기 위한
-	int bpp = 8 * mat_frame.elemSize();
-	assert((bpp == 8 || bpp == 24 || bpp == 32));
 
-	int padding = 0;
+	//int bpp = 8 * mat_frame.elemSize();
+	//assert((bpp == 8 || bpp == 24 || bpp == 32));
 
-	if (bpp < 32)
-		padding =4 - (mat_frame.cols % 4);
+	//int padding = 0;
 
-	if (padding == 4)
-		padding = 0;
+	//if (bpp < 32)
+	//	padding =4 - (mat_frame.cols % 4);
 
-	int border = 0;
+	//if (padding == 4)
+	//	padding = 0;
 
-	if (bpp < 32)
-		border = 4 - (mat_frame.cols % 4);
+	//int border = 0;
 
-	cv::Mat mat_temp;
-	if (border > 0 || mat_frame.isContinuous() == false)
-	{
-		cv::copyMakeBorder(mat_frame, mat_temp, 0, 0, 0, border, cv::BORDER_CONSTANT, 0);
-	}
-	else
-		mat_temp = mat_frame;
+	//if (bpp < 32)
+	//	border = 4 - (mat_frame.cols % 4);
 
-	RECT r;
-	m_picture.GetClientRect(&r);
-	cv::Size winSize(r.right, r.bottom);
+	//cv::Mat mat_temp;
+	//if (border > 0 || mat_frame.isContinuous() == false)
+	//{
+	//	cv::copyMakeBorder(mat_frame, mat_temp, 0, 0, 0, border, cv::BORDER_CONSTANT, 0);
+	//}
+	//else
+	//	mat_temp = mat_frame;
 
-	cv::imshow("TEST",mat_frame);
-	
+	//RECT r;
+	//m_picture.GetClientRect(&r);
+	//cv::Size winSize(r.right, r.bottom);
+
+	//cv::imshow("TEST",mat_frame);
+	//
 
 	CDialogEx::OnTimer(nIDEvent);
 }
@@ -104,17 +105,18 @@ BOOL COpenCvCamDlg::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  여기에 추가 초기화 작업을 추가합니다.
-	capture->open(0); // 카메라 연결
-	if (!capture->isOpened())
-		AfxMessageBox(_T("카메라 연결에 실패 하였습니다."));
+	//capture->open(0); // 카메라 연결
+	//capture->open(0); // 카메라 연결
+	//if (!capture->isOpened())
+		//AfxMessageBox(_T("카메라 연결에 실패 하였습니다."));
 
 
 	CRect rect;
 	CDC* pDC = m_picture.GetDC();
 	m_picture.GetClientRect(rect);
 
-	capture->set(cv::CAP_PROP_FRAME_WIDTH, rect.Width());
-	capture->set(cv::CAP_PROP_FRAME_HEIGHT, rect.Height());
+	//capture->set(cv::CAP_PROP_FRAME_WIDTH, rect.Width());
+	//capture->set(cv::CAP_PROP_FRAME_HEIGHT, rect.Height());
 
 
 
@@ -128,14 +130,14 @@ BOOL COpenCvCamDlg::OnInitDialog()
 void COpenCvCamDlg::OnPaint()
 {
 
-	if (mat_frame.data != NULL)
-	{
-		CRect rect;
-		CDC* pDC = m_picture.GetDC();
-		m_picture.GetClientRect(rect);
-		DIsplayImage(pDC, rect, mat_frame);
-		ReleaseDC(pDC);
-	}
+	//if (mat_frame.data != NULL)
+	//{
+	//	CRect rect;
+	//	CDC* pDC = m_picture.GetDC();
+	//	m_picture.GetClientRect(rect);
+	//	DIsplayImage(pDC, rect, mat_frame);
+	//	ReleaseDC(pDC);
+	//}
 	CDialogEx::OnPaint();
 }
 
@@ -160,48 +162,48 @@ void COpenCvCamDlg::FillBitmapInfo(BITMAPINFO* bmi, int width, int height, int b
 	}
 
 }
-
-void COpenCvCamDlg::DIsplayImage(CDC* pDC, CRect rect, cv::Mat& srcimg)
-{
-	cv::Mat img;
-	int step = ((int)(rect.Width() / 4)) * 4; 
-
-	if ((srcimg.empty()))
-		return;
-
-	resize(srcimg, img, cv::Size(step, rect.Height()));
-	uchar buffer[sizeof(BITMAPINFOHEADER) * 1024];
-
-	BITMAPINFO* bmi = (BITMAPINFO*)buffer;
-
-	int bmp_w = img.cols;
-	int bmp_h = img.rows;
-	int depth = img.depth();
-	int channels = img.channels();
-	int bpp = 8 * channels;
-
-	FillBitmapInfo(bmi, bmp_w, bmp_h, bpp, 0);
-
-	int from_x = MIN(0, bmp_w - 1);
-	int from_y = MIN(0, bmp_h - 1);
-	int sw = MAX(MIN(bmp_w - from_x, rect.Width()), 0);
-	int sh = MAX(MIN(bmp_h - from_y, rect.Height()), 0);
-
-
-	SetDIBitsToDevice(pDC->m_hDC, rect.left, rect.top, sw, sh, from_x, from_y, 0, sh, img.data + from_y * img.step, bmi, 0);
-	img.release();
-
-}
-
+//
+//void COpenCvCamDlg::DIsplayImage(CDC* pDC, CRect rect, cv::Mat& srcimg)
+//{
+//	cv::Mat img;
+//	int step = ((int)(rect.Width() / 4)) * 4; 
+//
+//	if ((srcimg.empty()))
+//		return;
+//
+//	resize(srcimg, img, cv::Size(step, rect.Height()));
+//	uchar buffer[sizeof(BITMAPINFOHEADER) * 1024];
+//
+//	BITMAPINFO* bmi = (BITMAPINFO*)buffer;
+//
+//	int bmp_w = img.cols;
+//	int bmp_h = img.rows;
+//	int depth = img.depth();
+//	int channels = img.channels();
+//	int bpp = 8 * channels;
+//
+//	FillBitmapInfo(bmi, bmp_w, bmp_h, bpp, 0);
+//
+//	int from_x = MIN(0, bmp_w - 1);
+//	int from_y = MIN(0, bmp_h - 1);
+//	int sw = MAX(MIN(bmp_w - from_x, rect.Width()), 0);
+//	int sh = MAX(MIN(bmp_h - from_y, rect.Height()), 0);
+//
+//
+//	SetDIBitsToDevice(pDC->m_hDC, rect.left, rect.top, sw, sh, from_x, from_y, 0, sh, img.data + from_y * img.step, bmi, 0);
+//	img.release();
+//
+//}
+//
 
 UINT ThreadImageCaptureFunc(LPVOID param)
 {
 	COpenCvCamDlg* pDlg = (COpenCvCamDlg*)param;
 	
 	while (pDlg->m_bThreadFlag) {
-		pDlg->capture->read(pDlg->mat_frame);
-		if(pDlg->m_nCamColorType == 1)
-			cv::cvtColor(pDlg->mat_frame, pDlg->mat_frame, cv::COLOR_RGB2GRAY);
+		//pDlg->capture->read(pDlg->mat_frame);
+		if (pDlg->m_nCamColorType == 1);
+			//cv::cvtColor(pDlg->mat_frame, pDlg->mat_frame, cv::COLOR_RGB2GRAY);
 
 
 		pDlg->Invalidate(FALSE);
@@ -249,42 +251,42 @@ void COpenCvCamDlg::OnBnClickedCamStop()
 void COpenCvCamDlg::OnBnClickedGrabButton()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
-	Mat2DIB(mat_frame, dib);
+	//Mat2DIB(mat_frame, dib);
 	AfxNewBitmap(dib);
 }
-
-void COpenCvCamDlg::Mat2DIB(cv::Mat& MatSrc, LdhDib& dibSrc)
-{
-	int bpp = MatSrc.channels() * 8;
-	cv::Mat tmp;
-
-	if ( bpp == 24)
-	{
-		dibSrc.CreateRGBBitmap(tmp.cols, tmp.rows);
-		LdhRGBImage img;
-		LdhDibToImage(dibSrc, img);
-		RGBBYTE* tmpArr = img.GetPixels();
-		std::memcpy(tmpArr, tmp.data, tmp.cols * tmp.rows * sizeof(RGBBYTE));
-		LdhImageToDib(img, dibSrc);
-		
-	}
-	if (bpp == 8)
-	{
-
-		dibSrc.CreateGrayBitmap(tmp.cols, tmp.rows);
-		LdhByteImage img;
-		LdhDibToImage(dibSrc, img);
-
-		BYTE* tempArr = img.GetPixels();
-		std::memcpy(tempArr, tmp.data, tmp.cols * tmp.rows * sizeof(BYTE));
-		LdhImageToDib(img, dibSrc);
-
-	}
-
-
-	
-	
-}
+//
+//void COpenCvCamDlg::Mat2DIB(cv::Mat& MatSrc, LdhDib& dibSrc)
+//{
+//	int bpp = MatSrc.channels() * 8;
+//	cv::Mat tmp;
+//
+//	if ( bpp == 24)
+//	{
+//		dibSrc.CreateRGBBitmap(tmp.cols, tmp.rows);
+//		LdhRGBImage img;
+//		LdhDibToImage(dibSrc, img);
+//		RGBBYTE* tmpArr = img.GetPixels();
+//		std::memcpy(tmpArr, tmp.data, tmp.cols * tmp.rows * sizeof(RGBBYTE));
+//		LdhImageToDib(img, dibSrc);
+//		
+//	}
+//	if (bpp == 8)
+//	{
+//
+//		dibSrc.CreateGrayBitmap(tmp.cols, tmp.rows);
+//		LdhByteImage img;
+//		LdhDibToImage(dibSrc, img);
+//
+//		BYTE* tempArr = img.GetPixels();
+//		std::memcpy(tempArr, tmp.data, tmp.cols * tmp.rows * sizeof(BYTE));
+//		LdhImageToDib(img, dibSrc);
+//
+//	}
+//
+//
+//	
+//	
+//}
 
 
 void COpenCvCamDlg::OnBnClickedOk()
@@ -300,7 +302,7 @@ void COpenCvCamDlg::OnBnClickedOk()
 		m_pThread = NULL;
 		m_bThreadFlag = FALSE;
 	}
-	capture->release();
+	//capture->release();
 	::SendMessage(this->m_hWnd, WM_CLOSE, NULL, NULL);
 }
 
