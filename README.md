@@ -1,4 +1,4 @@
-# Simple_ImageProcessingTool
+# Simple_ImageProcessingTool 
 
 MFC 기반의 간단한 영상처리 툴입니다.  
 영상처리 기초 학습을 목적으로 시작했으며, 기본 변환/필터/주파수 영역 처리/엣지·특징 검출을 직접 구현하며 정리했습니다.
